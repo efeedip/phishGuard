@@ -21,3 +21,20 @@ if (sourceCode.includes(searchString)) {
   console.log(`"${searchString}" not found in the source code.`);
   // You can perform alternative actions here
 }
+
+
+$.ajax({
+  url: 'https://www.whois.com/whois/' + "garantibbva.com.tr",
+  type: 'GET',
+  success: function (res) {
+    // Parse the response HTML using jQuery
+    const parsedHtml = $(res.responseText);
+
+    // Find the element with the id "registryData" and get its text content
+    const registryDataText = parsedHtml.find("#registryData").text();
+
+    // Log the extracted text to the console
+    console.log("registryData:", registryDataText);
+  }
+});
+
