@@ -2,11 +2,16 @@
 <html>
 <head>
   <title>WHOIS Extension</title>
-  <!-- Include jQuery from a CDN in your popup HTML -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include jQuery if you are using it -->
+
 </head>
 <body>
   <h1>WHOIS Lookup</h1>
-  <!-- Other HTML elements and scripts go here -->
+  <input type="text" id="domainInput" placeholder="Enter domain">
+  <button id="lookupButton">Lookup</button>
+  <div id="result"></div>
+  <script src="popup.js"></script>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
