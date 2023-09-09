@@ -3,7 +3,7 @@
     "name": "Phishing Detection",
     "description": "This extention allows you to asses phishing risks of the web site you visit.",
     "version": "1.0",
-    "permissions": [  "activeTab","storage","tabs","webNavigation"],
+    "permissions": ["activeTab","storage","tabs","webNavigation","notifications"],
     "action": {
       "default_popup": "popup.html"
     },
