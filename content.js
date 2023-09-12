@@ -292,7 +292,7 @@ function calculateRisk(sourceCode, currentUrl) {
         // Add more keywords with their weights
       ],
       urls: [
-        //"sube.garantibbva.com.tr",
+        "sube.garantibbva.com.tr",
         "internetsubesi.qnbfinansbank.com",
         "acikdeniz.denizbank.com/",
         "internetsube.yapikredi.com.tr",
