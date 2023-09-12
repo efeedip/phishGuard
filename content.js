@@ -15,17 +15,20 @@ class NotificationManager {
     }
   }
 
-  showWarningNotification() {
+  showWarningNotification(url) {
     if (!this.warningNotificationShown) {
       this.warningNotificationShown = true;
-      chrome.runtime.sendMessage({ showWarningPageNotification: true });
+      chrome.runtime.sendMessage({
+        showWarningPageNotification: true,
+        url: url,
+      });
     }
   }
 
-  showRealPageNotification() {
+  showRealPageNotification(url) {
     if (!this.realPageNotificationShown) {
       this.realPageNotificationShown = true;
-      chrome.runtime.sendMessage({ showRealPageNotification: true });
+      chrome.runtime.sendMessage({ showRealPageNotification: true, url: url });
     }
   }
 
@@ -42,10 +45,18 @@ let calculateRiskScriptHasRun = false;
 
 const sourceCode = document.documentElement.outerHTML;
 const currentUrl = window.location.href;
+
+function getFinalDecision(sourceCode, currentUrl, notificationManager) {
+  const final_decision = runChecks(sourceCode, currentUrl, notificationManager);
+  return final_decision;
+}
+
 runChecks(sourceCode, currentUrl, notificationManager);
 
 function runChecks(sourceCode, currentUrl, notificationManager) {
   let riskScore = 0;
+  let decision = "";
+  const dataToStore = {};
 
   // Call the sourceCodeCheck function and handle notifications
   if (!sourceCodeScriptHasRun) {
@@ -54,9 +65,12 @@ function runChecks(sourceCode, currentUrl, notificationManager) {
       currentUrl,
       notificationManager
     );
-    if (!sourceCodeCheck_result) {
+    if (sourceCodeCheck_result === false) {
       // Send message to background.js to start whoisQuery
-      chrome.runtime.sendMessage({ whoisQuery: true, domain_url: currentUrl });
+      chrome.runtime.sendMessage({
+        whoisQuery: true,
+        domain_url: currentUrl,
+      });
 
       // Start domainCheck with coming message from background.js
       chrome.runtime.onMessage.addListener(function (
@@ -79,16 +93,45 @@ function runChecks(sourceCode, currentUrl, notificationManager) {
             }
 
             if (riskScore >= 70) {
-              notificationManager.showWarningNotification();
+              decision = "WARNING";
+              dataToStore[currentUrl] = decision;
+              chrome.storage.local.set({ myData: dataToStore }, function () {
+                console.log("Data stored successfully");
+              });
+              notificationManager.showWarningNotification(currentUrl);
+            } else {
+              decision = "UNDEFINED";
+              dataToStore[currentUrl] = decision;
+              chrome.storage.local.set({ myData: dataToStore }, function () {
+                console.log("Data stored successfully");
+              });
             }
             calculateRiskScriptHasRun = true;
             console.log("Final Risk Score: " + riskScore);
           }
         }
       });
+    } else if (sourceCodeCheck_result === true) {
+      decision = "PHISHING";
+      dataToStore[currentUrl] = decision;
+      chrome.storage.local.set({ myData: dataToStore }, function () {
+        console.log("Data stored successfully");
+      });
+    } else if (sourceCodeCheck_result === null) {
+      decision = "SAFE";
+      dataToStore[currentUrl] = decision;
+      chrome.storage.local.set({ myData: dataToStore }, function () {
+        console.log("Data stored successfully");
+      });
     }
     sourceCodeScriptHasRun = true;
   }
+
+  chrome.storage.local.get(["myData"], function (result) {
+    const storedData = result.myData;
+    console.log("Retrieved data:", storedData);
+  });
+  return decision;
 }
 
 // Add a listener for messages from the background script
@@ -167,9 +210,9 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
     if (assetsFound) {
       if (currentUrl.includes(url)) {
         notificationManager.resetRealPageNotification();
-        notificationManager.showRealPageNotification();
+        notificationManager.showRealPageNotification(currentUrl);
         sourceCodeScriptHasRun = true;
-        return true;
+        return null;
       } else {
         if (!isSpesifiedURL) {
           notificationManager.showPhishingNotification(currentUrl);
@@ -204,7 +247,7 @@ function domainCheck(message) {
       const diffTime = Math.abs(date2 - date1);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       console.log(diffDays + " days");
-      console.log("Created on:", createdOn)
+      console.log("Created on:", createdOn);
       return diffDays;
     } else {
       console.log("#registryData element not found in the HTML.");
@@ -290,3 +333,18 @@ function calculateRisk(sourceCode, currentUrl) {
   calculateRiskScriptHasRun = true;
   return keywordCatch; // Return the calculated risk score
 }
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.requestDecision) {
+    console.log("message got into content");
+    // Get the decision
+    const decision = getFinalDecision(
+      sourceCode,
+      currentUrl,
+      notificationManager
+    );
+    console.log(decision);
+    // Send the decision back to the popup
+    chrome.runtime.sendMessage({ decision: decision });
+  }
+});

@@ -1,21 +1,3 @@
-chrome.webNavigation.onCompleted.addListener(function (details) {
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.showPhishingPageNotification) {
-      // Create and show the notification
-      showPhishingDetectedNotification(message.url);
-    }
-
-    if (message.showRealPageNotification) {
-      // Create and show the notification
-      showRealSiteNotification();
-    }
-
-    if (message.showWarningPageNotification) {
-      showWarningNotification();
-    }
-  });
-});
-
 chrome.notifications.onButtonClicked.addListener(
   (notificationId, buttonIndex) => {
     if (buttonIndex === 0) {
@@ -33,6 +15,20 @@ chrome.notifications.onButtonClicked.addListener(
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.whoisQuery) {
     whoisQuery(message.domain_url);
+  }
+
+  if (message.showPhishingPageNotification) {
+    // Create and show the notification
+    showPhishingDetectedNotification(message.url);
+  }
+
+  if (message.showRealPageNotification) {
+    // Create and show the notification
+    showRealSiteNotification();
+  }
+
+  if (message.showWarningPageNotification) {
+    showWarningNotification();
   }
 });
 
