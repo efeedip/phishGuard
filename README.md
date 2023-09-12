@@ -1,4 +1,4 @@
-# phishingDetection_GExt
+# PhishGuard
 It is a phishing detection chrome extention tool
 
 In particular, the "Phishing Detected" notification is triggered by imitating the internet banking pages of the 10 banks listed below.
