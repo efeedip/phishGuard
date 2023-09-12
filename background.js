@@ -24,11 +24,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.showRealPageNotification) {
     // Create and show the notification
-    showRealSiteNotification();
+    showRealSiteNotification(message.url);
   }
 
   if (message.showWarningPageNotification) {
-    showWarningNotification();
+    showWarningNotification(message.url);
   }
 });
 
@@ -53,8 +53,8 @@ function whoisQuery(domain_url) {
 function showPhishingDetectedNotification(url) {
   chrome.notifications.create({
     type: "basic",
-    iconUrl: "images/icon-48.png",
-    title: `Phishing Detector Notification\nPhishing Site Detected!`,
+    iconUrl: "images/icon-48-phishing.png",
+    title: `PhishGuard Notification\nPhishing Site Detected!`,
     message: `${url}`,
     buttons: [{ title: "Close Page" }],
     requireInteraction: true,
@@ -62,22 +62,22 @@ function showPhishingDetectedNotification(url) {
   });
 }
 
-function showRealSiteNotification() {
+function showRealSiteNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-success.png",
-    title: `Phishing Detector Notification\nSafe to Log In`,
-    message: `This site appears to be safe.`,
+    title: `PhishGuard Notification\nSafe to Log In`,
+    message: `This site appears to be safe.\n${url}`,
     priority: 0,
   });
 }
 
-function showWarningNotification() {
+function showWarningNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-warning.png",
-    title: `Phishing Detector Notification\nHigh risk of data theft `,
-    message: `It is not recommended to enter your banking information on this page.`,
+    title: `PhishGuard Notification\nHigh risk of data theft `,
+    message: `It is not recommended to enter your banking information on this page.\n${url}`,
     buttons: [{ title: "Close Page" }],
     requireInteraction: true,
     priority: 0,

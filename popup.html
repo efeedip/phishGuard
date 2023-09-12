@@ -2,29 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Detector</title>
-    <link rel="stylesheet" href="popup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">Phishing Detector</h1>
-            <p class="description">Assess the phishing risks of websites you visit.</p>
+  <div class="container">
+    <div class="header">
+      <br>
+      <img id="logo" src="images/icon-logo2.png" alt="Logo" class="logo-image">
+      <h1 class="title">PhishGuard</h1>
+      <p class="description">Assess the phishing risks of websites you visit.</p>
+    </div>
+    <div class="content">
+      <button id="lookupButton" class="button">Security Check</button>
+      <div id="result" class="result">
+        <div class="decision-container">
+          <img id="decisionImage" style="display: none;" src="" alt="Decision Image" class="decision-image">
+          <p class="decision-text"></p>
         </div>
-        <div class="content">
-          <button id="lookupButton" class="button">Start Scan</button>
-          <div id="result" class="result">
-              <div class="decision-container">
-                  <img id="decisionImage" style="display: none;" src="" alt="Decision Image" class="decision-image">
-                  <p class="decision-text"></p>
-              </div>
-          </div>
       </div>
     </div>
-    <script src="popup.js"></script>
+    <br>
+    <a href="https://www.tbb.org.tr/Content/Upload/Dokuman/7328/TBB-Dolandiricilik-Eylemleri-ve-Korunma-Yontemleri.html">Banks Association of Türkiye<br>Fraud Acts and Protection Methods</a>
+  </div>
 </body>
-
 </html>

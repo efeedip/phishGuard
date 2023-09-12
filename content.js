@@ -85,6 +85,7 @@ function runChecks(sourceCode, currentUrl, notificationManager) {
           // Calculate the risk based on source code and add it to the riskScore
           if (!calculateRiskScriptHasRun) {
             const sourceCodeRisk = calculateRisk(sourceCode, currentUrl);
+            console.log("first risk score:" + sourceCodeRisk);
             riskScore += sourceCodeRisk;
 
             // Add domain age-based risk
@@ -146,12 +147,18 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
         "logo-garantibbva-2x.png",
         "sube.garantibbva.com.tr/isube/login/login/passwordentrypersonal-tr",
         "sube.garantibbva.com.tr/isube/login/login/passwordentrycorporate-tr",
+        "Garanti Bankası A.Ş.",
+        "GarantiBBVA",
       ],
       url: "sube.garantibbva.com.tr",
     },
     {
       assets: ["/WebApplication.UI/entrypoint.aspx?T"],
       url: "internetsubesi.akbank.com",
+    },
+    {
+      assets: ["/WebApplication.UI/entrypoint.aspx?T"],
+      url: "akbank.com/tr-tr/sayfalar/default.aspx",
     },
     {
       assets: ["/ibank/static/css"],
@@ -260,24 +267,29 @@ function domainCheck(message) {
 }
 
 function calculateRisk(sourceCode, currentUrl) {
-  // Define your query keywords with associated weights
+  // Define query keywords with associated weights
   const queryKeywords = [
     {
       keywords: [
         { keyword: "Internet Banka", weight: 10 },
         { keyword: "İnternet Banka", weight: 10 },
+        { keyword: "CVV Kod", weight: 20 },
+        { keyword: "CVV", weight: 20 },
+        { keyword: "Kart Numara", weight: 20 },
+        { keyword: "Kart No", weight: 20 },
+        { keyword: "Son Kullanma", weight: 20 },
         { keyword: "İnternet Şube", weight: 10 },
         { keyword: "Internet Sube", weight: 10 },
         { keyword: "custno", weight: 5 },
-        { keyword: "loginForm", weight: 3 },
-        { keyword: "form", weight: 3 },
-        { keyword: "Form", weight: 3 },
-        { keyword: "müşteri num", weight: 5 },
-        { keyword: "musteri num", weight: 5 },
-        { keyword: "T.C. kimlik", weight: 5 },
-        { keyword: "T.C. Kimlik", weight: 5 },
-        { keyword: "TC Kimlik", weight: 5 },
-        { keyword: "TC kimlik", weight: 5 },
+        { keyword: "loginForm", weight: 10 },
+        { keyword: "form", weight: 5 },
+        { keyword: "Form", weight: 5 },
+        { keyword: "müşteri num", weight: 10 },
+        { keyword: "musteri num", weight: 10 },
+        { keyword: "T.C. kimlik", weight: 10 },
+        { keyword: "T.C. Kimlik", weight: 10 },
+        { keyword: "TC Kimlik", weight: 10 },
+        { keyword: "TC kimlik", weight: 10 },
         { keyword: "Müşteri Num", weight: 5 },
         { keyword: "password", weight: 5 },
         { keyword: "formField", weight: 3 },
@@ -289,7 +301,12 @@ function calculateRisk(sourceCode, currentUrl) {
         { keyword: "TCKN", weight: 10 },
         { keyword: "Müşteri/T.C", weight: 10 },
         { keyword: "Müşteri/T.C", weight: 10 },
-        // Add more keywords with their weights
+        { keyword: "Aidat", weight: 10 },
+        { keyword: "aidat", weight: 10 },
+        { keyword: "iade", weight: 10 },
+        { keyword: "İade", weight: 10 },
+        { keyword: "Iade", weight: 10 },
+        { keyword: "e-Devlet", weight: 10 },
       ],
       urls: [
         "sube.garantibbva.com.tr",
@@ -302,10 +319,10 @@ function calculateRisk(sourceCode, currentUrl) {
         "internetbankaciligi.fibabanka.com.tr",
         "isube.anadolubank.com",
         "internetsubesi.akbank.com",
+        "turkiye.gov.tr",
         // Add more URLs
       ],
     },
-    // You can define additional keyword sets here
   ];
 
   let keywordCatch = 0; // Initialize the keywordCatch variable
