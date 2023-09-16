@@ -150,7 +150,7 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
         "Garanti Bankası A.Ş.",
         "GarantiBBVA",
       ],
-      url: "sube.garantibbva.com.tr",
+      url: "garantibbva.com.tr",
     },
     {
       assets: ["/WebApplication.UI/entrypoint.aspx?T"],
@@ -216,6 +216,7 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
 
     if (assetsFound) {
       if (currentUrl.includes(url)) {
+        console.log("here");
         notificationManager.resetRealPageNotification();
         notificationManager.showRealPageNotification(currentUrl);
         sourceCodeScriptHasRun = true;
@@ -309,6 +310,7 @@ function calculateRisk(sourceCode, currentUrl) {
         { keyword: "e-Devlet", weight: 10 },
       ],
       urls: [
+        "www.garantibbva.com.tr",
         "sube.garantibbva.com.tr",
         "internetsubesi.qnbfinansbank.com",
         "acikdeniz.denizbank.com/",

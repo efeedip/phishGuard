@@ -54,9 +54,9 @@ function showPhishingDetectedNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-phishing.png",
-    title: `PhishGuard Notification\nPhishing Site Detected!`,
+    title: `PhishGuard Bildirimi\nKimlik Avı Sitesi Algılandı!`,
     message: `${url}`,
-    buttons: [{ title: "Close Page" }],
+    buttons: [{ title: "Sayfayı Kapat" }],
     requireInteraction: true,
     priority: 0,
   });
@@ -66,8 +66,8 @@ function showRealSiteNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-success.png",
-    title: `PhishGuard Notification\nSafe to Log In`,
-    message: `This site appears to be safe.\n${url}`,
+    title: `PhishGuard Bildirimi`,
+    message: `Güvenle giriş yapabilirsiniz.\n${url}`,
     priority: 0,
   });
 }
@@ -76,9 +76,9 @@ function showWarningNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-warning.png",
-    title: `PhishGuard Notification\nHigh risk of data theft `,
-    message: `It is not recommended to enter your banking information on this page.\n${url}`,
-    buttons: [{ title: "Close Page" }],
+    title: `PhishGuard Bildirimi\nYüksek veri hırsızlığı riski`,
+    message: `Bu sayfaya banka bilgilerinizi girmeniz önerilmez.\n${url}`,
+    buttons: [{ title: "Sayfayı Kapat" }],
     requireInteraction: true,
     priority: 0,
   });

@@ -28,7 +28,7 @@ Effective Date: 12.09.2023
 
 1. Introduction
 
-Welcome to [Your Extension Name] ("we", "our", or "us"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your data when you use our Chrome extension.
+Welcome to PhishGuard. We respect your privacy and are committed to protecting your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your data when you use our Chrome extension.
 
 2. Information We Collect
 
@@ -56,5 +56,5 @@ We may update this Privacy Policy to reflect changes in our practices or for oth
 
 7. Contact Us
 
-If you have any questions, concerns, or requests related to your privacy or this Privacy Policy, please contact us at [Your Contact Information].
+If you have any questions, concerns, or requests related to your privacy or this Privacy Policy, please contact us at efeedipceylani@gmail.com.
 
