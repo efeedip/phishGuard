@@ -147,8 +147,7 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
         "logo-garantibbva-2x.png",
         "sube.garantibbva.com.tr/isube/login/login/passwordentrypersonal-tr",
         "sube.garantibbva.com.tr/isube/login/login/passwordentrycorporate-tr",
-        "Garanti Bankası A.Ş.",
-        "GarantiBBVA",
+        "Garanti BBVA İnternet Bankacılığı Şifresi",
       ],
       url: "garantibbva.com.tr",
     },
@@ -192,6 +191,10 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
       assets: ["/Content/Themes/FinansbankTheme"],
       url: "internetsubesi.qnbfinansbank.com",
     },
+    {
+      assets: ["https://efeedip.github.io/phishGuard/"],
+      url: "efeedip.github.io/phishGuard",
+    },
   ];
 
   const skipPhishingNotificationUrls = [
@@ -205,18 +208,19 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
     "https://www.sekerbank.com.tr/",
     "https://www.fibabanka.com.tr/",
     "https://www.anadolubank.com.tr/sizin-icin",
+    "https://efeedip.github.io/phishGuard/"
     // Add more URLs to skip here
   ];
 
   const isSpesifiedURL = skipPhishingNotificationUrls.includes(currentUrl);
-
+  console.log(isSpesifiedURL, currentUrl);
   for (const bank of banks) {
     const { assets, url } = bank;
     const assetsFound = assets.some((asset) => sourceCode.includes(asset));
 
     if (assetsFound) {
+      console.log(currentUrl, url);
       if (currentUrl.includes(url)) {
-        console.log("here");
         notificationManager.resetRealPageNotification();
         notificationManager.showRealPageNotification(currentUrl);
         sourceCodeScriptHasRun = true;
@@ -269,6 +273,7 @@ function domainCheck(message) {
 
 function calculateRisk(sourceCode, currentUrl) {
   // Define query keywords with associated weights
+  console.log("calculating for " + currentUrl);
   const queryKeywords = [
     {
       keywords: [
@@ -322,6 +327,7 @@ function calculateRisk(sourceCode, currentUrl) {
         "isube.anadolubank.com",
         "internetsubesi.akbank.com",
         "turkiye.gov.tr",
+        "efeedip.github.io/phishGuard/",
         // Add more URLs
       ],
     },

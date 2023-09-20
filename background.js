@@ -54,7 +54,7 @@ function showPhishingDetectedNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-phishing.png",
-    title: `PhishGuard Bildirimi\nKimlik Avı Sitesi Algılandı!`,
+    title: `PhishShield Bildirimi\nKimlik Avı Sitesi Algılandı!`,
     message: `${url}`,
     buttons: [{ title: "Sayfayı Kapat" }],
     requireInteraction: true,
@@ -66,7 +66,7 @@ function showRealSiteNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-success.png",
-    title: `PhishGuard Bildirimi`,
+    title: `PhishShield Bildirimi`,
     message: `Güvenle giriş yapabilirsiniz.\n${url}`,
     priority: 0,
   });
@@ -76,7 +76,7 @@ function showWarningNotification(url) {
   chrome.notifications.create({
     type: "basic",
     iconUrl: "images/icon-48-warning.png",
-    title: `PhishGuard Bildirimi\nYüksek veri hırsızlığı riski`,
+    title: `PhishShield Bildirimi\nYüksek veri hırsızlığı riski`,
     message: `Bu sayfaya banka bilgilerinizi girmeniz önerilmez.\n${url}`,
     buttons: [{ title: "Sayfayı Kapat" }],
     requireInteraction: true,

@@ -1,17 +1,17 @@
 {
     "manifest_version": 3,
-    "name": "PhishGuard",
-    "description": "This extention allows you to asses phishing risks of the web site you visit.",
-    "version": "0.0.0.1",
-    "permissions": ["activeTab","storage","tabs","webNavigation","notifications"],
+    "name": "PhishShield",
+    "description": "Web sitelerinin sahte olup olmadığını değerlendirmenize yardımcı olan bir güvenlik aracıdır.",
+    "version": "0.0.0.2",
+    "permissions": ["activeTab","storage","tabs","notifications"],
     "action": {
       "default_popup": "popup.html"
     },
     "icons": {
-      "16": "images/icon-16-3.png",
-      "48": "images/icon-48-3.png",
-      "128": "images/icon-128-3.png",
-      "256": "images/icon-248-3.png"
+      "16": "images/icon-3-16.png",
+      "48": "images/icon-3-48.png",
+      "128": "images/icon-3-120.png",
+      "256": "images/icon-3-240.png"
     },
     "content_scripts": [
       {

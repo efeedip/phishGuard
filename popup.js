@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const decisionContainer = document.querySelector(".decision-container");
   const decisionImage = document.getElementById("decisionImage");
   const decisionText = document.querySelector(".decision-text");
-  
+  const description = document.querySelector(".description");
+
   lookupButton.addEventListener("click", function () {
     // Send a message to the content script to request the decision
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -19,20 +20,24 @@ document.addEventListener("DOMContentLoaded", function () {
         if (storedDecision) {
           decisionContainer.style.display = "block";
           decisionImage.style.display = "block";
-
+          description.style.display = "none";
           // Set the corresponding image based on the decision (you'll need to have image URLs)
           if (storedDecision === "PHISHING") {
             decisionText.textContent = `Kimlik Avı Sitesi Algılandı!\n \n${currentUrl}\n \nBu web sayfasını derhal kapatın ve bu sayfadaki bankacılık bilgilerinizin hiçbirini kullanmayın.`;
             decisionImage.src = "images/icon-72-phishing.png";
+            description.style.display = "none";
           } else if (storedDecision === "SAFE") {
             decisionText.textContent = `Bu siteye giriş yapmak güvenli görünüyor.\n \n${currentUrl}`;
             decisionImage.src = "images/icon-72-success.png";
+            description.style.display = "none";
           } else if (storedDecision === "WARNING") {
             decisionText.textContent = `\nBu web sayfasının kimlik avı sayfası olma riskinin yüksek olduğu hesaplandı.\n \n${currentUrl}\n \nBu sayfada hiçbir bankacılık bilginizi kullanmamanızı önemle öneririz.`;
             decisionImage.src = "images/icon-72-warning.png";
+            description.style.display = "none";
           } else {
             decisionText.textContent = "Karar alınamadı.\n \nLütfen sekmeyi yeniledikten sonra deneyin.";
             decisionImage.src = "images/icon-72-undefined.png";
+            description.style.display = "none";
           }
           lookupButton.style.display = "none";
         } else {
@@ -61,24 +66,30 @@ document.addEventListener("DOMContentLoaded", function () {
       // Display the decision in the popup
       decisionContainer.style.display = "block";
       decisionImage.style.display = "block";
+      description.style.display = "none";
       // Set the corresponding image based on the decision (you'll need to have image URLs)
       if (storedDecision === "PHISHING") {
         decisionText.textContent = `Kimlik Avı Sitesi Algılandı!\n \n${currentUrl}\n \nBu web sayfasını derhal kapatın ve bu sayfadaki bankacılık bilgilerinizin hiçbirini kullanmayın.`;
         decisionImage.src = "images/icon-72-phishing.png";
+        description.style.display = "none";
       } else if (storedDecision === "SAFE") {
         decisionText.textContent = `Bu siteye giriş yapmak güvenli görünüyor.\n \n${currentUrl}`;
         decisionImage.src = "images/icon-72-success.png";
+        description.style.display = "none";
       } else if (storedDecision === "WARNING") {
         decisionText.textContent = `\nBu web sayfasının kimlik avı sayfası olma riskinin yüksek olduğu hesaplandı.\n \n${currentUrl}\n \nBu sayfada hiçbir bankacılık bilginizi kullanmamanızı önemle öneririz.`;
         decisionImage.src = "images/icon-72-warning.png";
+        description.style.display = "none";
       } else {
         decisionText.textContent = "Karar alınamadı.\n \nLütfen sekmeyi yeniledikten sonra deneyin.";
         decisionImage.src = "images/icon-72-undefined.png";
+        description.style.display = "none";
       }
       lookupButton.style.display = "none";
     } else {
       decisionText.textContent = "Karar alınamadı.\n \nLütfen sekmeyi yeniledikten sonra deneyin.";
       decisionImage.src = "images/icon-72-undefined.png";
+      description.style.display = "none";
       console.log("No decision received from content script.");
       lookupButton.style.display = "none";
     }

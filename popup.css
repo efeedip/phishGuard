@@ -35,7 +35,7 @@ body {
 /* Title styling */
 .title {
     font-size: 24px;
-    color: #0073e6;
+    color: #1624F2;
 }
 
 /* Description styling */
@@ -47,7 +47,7 @@ body {
 
 /* Button styling */
 .button {
-    background-color: #0073e6;
+    background-color: #1624F2;
     color: #fff;
     border: none;
     padding: 12px 24px;
@@ -119,7 +119,7 @@ body {
 }
 
 input.check-toggle-round-flat:checked~.off {
-    color:  #0073e6;
+    color:  #1624F2;
 }
 
 input.check-toggle-round-flat:checked~.on {
@@ -129,7 +129,7 @@ input.check-toggle-round-flat:checked~.on {
 .switch>span.on {
     left: 0;
     padding-left: 2px;
-    color:  #0073e6;
+    color:  #1624F2;
 }
 
 .switch>span.off {
@@ -159,7 +159,7 @@ input.check-toggle-round-flat+label {
     padding: 2px;
     width: 97px;
     height: 35px;
-    background-color:  #0073e6;
+    background-color:  #1624F2;
     -webkit-border-radius: 60px;
     -moz-border-radius: 60px;
     -ms-border-radius: 60px;
@@ -179,7 +179,7 @@ input.check-toggle-round-flat+label:before {
     left: 2px;
     bottom: 2px;
     right: 2px;
-    background-color: #0073e6;
+    background-color: #1624F2;
     -webkit-moz-border-radius: 60px;
     -ms-border-radius: 60px;
     -o-border-radius: 60px;

@@ -1,4 +1,4 @@
-# PhishGuard
+# PhishShield
 It is a phishing detection chrome extention tool
 
 In particular, the "Phishing Detected" notification is triggered by imitating the internet banking pages of the 10 banks listed below.
@@ -22,13 +22,13 @@ Tool sends 3 types of notification:
   * QNB FinansBank
   * DenizBank
 
-# Privacy Policy for PhishGuard
+# Privacy Policy for PhishShield
 
 Effective Date: 12.09.2023
 
 1. Introduction
 
-Welcome to PhishGuard. We respect your privacy and are committed to protecting your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your data when you use our Chrome extension.
+Welcome to PhishShield. We respect your privacy and are committed to protecting your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your data when you use our Chrome extension.
 
 2. Information We Collect
 
