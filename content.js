@@ -91,6 +91,8 @@ function runChecks(sourceCode, currentUrl, notificationManager) {
             // Add domain age-based risk
             if (domainAge <= 30) {
               riskScore += 50;
+            } else if(domainAge >= 99) {
+              riskScore -= 100
             }
 
             if (riskScore >= 70) {
@@ -195,6 +197,10 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
       assets: ["https://efeedip.github.io/phishGuard/"],
       url: "efeedip.github.io/phishGuard",
     },
+    {
+      assets:["garantiRetirement"],
+      url: "isube.garantibbvaemeklilik.com.tr"
+    },
   ];
 
   const skipPhishingNotificationUrls = [
@@ -208,7 +214,8 @@ function sourceCodeCheck(sourceCode, currentUrl, notificationManager) {
     "https://www.sekerbank.com.tr/",
     "https://www.fibabanka.com.tr/",
     "https://www.anadolubank.com.tr/sizin-icin",
-    "https://efeedip.github.io/phishGuard/"
+    "https://efeedip.github.io/phishGuard/",
+    "https://isube.garantibbvaemeklilik.com.tr/",
     // Add more URLs to skip here
   ];
 
@@ -350,6 +357,7 @@ function calculateRisk(sourceCode, currentUrl) {
 
         // Check if the keyword is found in the sourceCode
         if (sourceCode.includes(keyword)) {
+          console.log("keyword ", keyword, weight);
           keywordCatch += weight; // Increase keywordCatch by the keyword's weight
         }
       }
